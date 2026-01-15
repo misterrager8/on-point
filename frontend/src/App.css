@@ -1,0 +1,172 @@
+@import "./colors.css";
+
+* {
+  font-family: "Roboto";
+}
+
+body {
+  background-color: var(--primary-bg);
+  color: var(--primary-txt);
+  margin: 0;
+}
+
+.btn {
+  border-color: var(--btn-color);
+  color: var(--btn-color);
+  letter-spacing: 1.5px;
+  border-width: 0.5px;
+  font-size: 0.875rem;
+}
+
+.btn.active,
+.btn:hover {
+  background-color: var(--btn-color);
+  color: var(--btn-hover-txt);
+}
+
+.body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  /* border: 0.5px solid; */
+}
+
+.inner {
+  height: 100%;
+  width: 75%;
+  margin: auto;
+  /* border: 0.5px solid; */
+}
+
+.nav-custom {
+  height: 70px;
+  border-bottom: 0.5px solid var(--secondary-color);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-custom > * {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.nav-custom .btn {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.dropdown-menu,
+.dropdown-item {
+  background-color: var(--primary-bg);
+  color: var(--primary-txt);
+}
+
+.dropdown-menu {
+  border-color: var(--btn-color);
+  padding: 1px;
+}
+
+.dropdown-item {
+  letter-spacing: 1.5px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.dropdown-item.active,
+.dropdown-item:hover {
+  border-color: transparent;
+  color: var(--btn-hover-txt);
+  background-color: var(--btn-color);
+}
+
+.form-control,
+.form-control:focus {
+  background-color: var(--secondary-color);
+  border: none;
+  color: var(--primary-txt);
+  font-size: 0.875rem;
+}
+
+::placeholder {
+  color: var(--primary-txt) !important;
+  opacity: 50% !important;
+  letter-spacing: 2px !important;
+  font-size: 0.875rem !important;
+}
+
+.between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.spinner-border {
+  color: var(--btn-color);
+}
+
+.flex {
+  display: flex;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 7.5px;
+  margin-bottom: 2px;
+  cursor: pointer;
+}
+
+.task-item > * {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.task-item:hover {
+  background-color: var(--btn-color);
+  color: var(--btn-hover-txt);
+  border-radius: 5px;
+}
+
+.task-item:hover .btn {
+  color: var(--btn-hover-txt);
+}
+
+.task-label {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 0.875rem;
+  letter-spacing: 1.5px;
+}
+
+.task-item.done {
+  opacity: 25%;
+}
+
+.task-item.done * {
+  text-decoration: line-through;
+}
+
+.btn.red {
+  color: #be2b2b;
+}
+
+.btn.green {
+  color: #2bbe55;
+}
+
+.badge-custom {
+  font-size: small;
+  border: 0.5px solid;
+  border-radius: 5px;
+  padding: 1px 10px;
+}
+
+@media screen and (max-width: 1050px) {
+  .inner {
+    width: 95%;
+  }
+
+  .flex {
+    flex-direction: column;
+  }
+}
