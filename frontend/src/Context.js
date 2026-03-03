@@ -8,7 +8,7 @@ export default function Context({ children }) {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState("");
   const [currentUser, setCurrentUser] = useState(
-    JSON.parse(localStorage.getItem("onpoint-user"))
+    JSON.parse(localStorage.getItem("onpoint-user")),
   );
   const [tasks, setTasks] = useState([]);
   const [currentTask, setCurrentTask] = useState(null);
@@ -46,7 +46,7 @@ export default function Context({ children }) {
         },
         (data) => {
           setCurrentUser(data.user);
-        }
+        },
       );
     } else {
       alert("Passwords don't match.");
@@ -79,6 +79,22 @@ export default function Context({ children }) {
     });
   };
 
+  const togglePinned = (id) => {
+    setLoading(true);
+    api("toggle_pinned", { id: id }, (data) => {
+      setTasks(data.tasks);
+      setLoading(false);
+    });
+  };
+
+  const recycleTask = (id) => {
+    setLoading(true);
+    api("recycle_task", { id: id }, (data) => {
+      setTasks(data.tasks);
+      setLoading(false);
+    });
+  };
+
   const editTask = (e, title, description, tag) => {
     e.preventDefault();
     setLoading(true);
@@ -88,7 +104,7 @@ export default function Context({ children }) {
       (data) => {
         setTasks(data.tasks);
         setLoading(false);
-      }
+      },
     );
   };
 
@@ -140,6 +156,8 @@ export default function Context({ children }) {
     editTask: editTask,
     toggleTask: toggleTask,
     setTasks: setTasks,
+    recycleTask: recycleTask,
+    togglePinned: togglePinned,
   };
 
   return (

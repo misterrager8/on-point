@@ -44,7 +44,7 @@ def signup():
             )
 
             user__.add()
-            login_user(user__)
+            login_user(user__, remember=True)
 
             user_ = user__.to_dict()
 
@@ -68,7 +68,7 @@ def login():
         user__: User = User.query.filter_by(username=username).first()
         if user__ and check_password_hash(user__.password, password):
             user_ = user__.to_dict()
-            login_user(user__)
+            login_user(user__, remember=True)
         else:
             success = False
             msg = "User not found, Try again"
@@ -166,6 +166,54 @@ def toggle_task():
     try:
         task_ = Task.get(int(request.json.get("id")))
         task_.toggle()
+
+        tasks_ = [i.to_dict() for i in Task.all(current_user.id)]
+    except Exception as e:
+        success = False
+        msg = str(e)
+
+    return {"success": success, "msg": msg, "tasks": tasks_}
+
+
+@current_app.post("/toggle_pinned")
+def toggle_pinned():
+    success = True
+    msg = ""
+    task_ = None
+    tasks_ = []
+
+    try:
+        task_ = Task.get(int(request.json.get("id")))
+        task_.pinned = not task_.pinned
+        task_.edit()
+
+        tasks_ = [i.to_dict() for i in Task.all(current_user.id)]
+    except Exception as e:
+        success = False
+        msg = str(e)
+
+    return {"success": success, "msg": msg, "tasks": tasks_}
+
+
+@current_app.post("/recycle_task")
+def recycle_task():
+    success = True
+    msg = ""
+    task_ = None
+    tasks_ = []
+
+    try:
+        task_ = Task.get(int(request.json.get("id")))
+
+        task_2 = Task(
+            user_id=current_user.id,
+            title=task_.title,
+            description=task_.description,
+            tag=task_.tag,
+            done=False,
+            date_added=datetime.datetime.now(),
+        )
+        task_2.add()
 
         tasks_ = [i.to_dict() for i in Task.all(current_user.id)]
     except Exception as e:

@@ -1,3 +1,5 @@
+import { Icon } from "@iconify/react";
+
 export default function Dropdown({
   text,
   target,
@@ -26,14 +28,10 @@ export default function Dropdown({
         data-bs-target={"#" + target}
         data-bs-auto-close={autoClose}
         data-bs-toggle="dropdown">
-        {icon && (
-          <i
-            className={
-              "bi bi-" + icon
-              //  + (text ? " me-2" : "")
-            }></i>
+        {icon && <Icon inline icon={icon} />}
+        {text && (
+          <span className={"abbreviate" + (icon ? " ms-2" : "")}>{text}</span>
         )}
-        {text && <span className={icon ? "ms-2" : ""}>{text}</span>}
       </a>
       <div id={target} className={"dropdown-menu " + classNameMenu}>
         {children}

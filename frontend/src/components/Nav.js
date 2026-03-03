@@ -9,7 +9,27 @@ export default function Nav() {
   const multiCtx = useContext(MultiContext);
   const [theme, setTheme] = useState(localStorage.getItem("onpoint-theme"));
 
-  const themes = ["light", "dark"];
+  const themes = [
+    "light",
+    "navy-pumpkin",
+    "firetruck-denim",
+    "banana-lilac",
+    "nebula-royal",
+    "firetruck-denim",
+    "iris-navy",
+    "citrus-lilac",
+    "cheese-banana",
+    "navy-bumblebee",
+    "aqua-lotus",
+    "dark",
+    "regal-iris",
+    "butter-regal",
+    "emerald-lavender",
+    "blueberry-navy",
+    "sky-iris",
+    "ruby-blood",
+    "sunset-grape",
+  ];
 
   useEffect(() => {
     localStorage.setItem("onpoint-theme", theme);
@@ -18,13 +38,21 @@ export default function Nav() {
 
   return (
     <div className="nav-custom">
-      <div>{multiCtx.loading ? <Spinner /> : <Button icon="check-lg" />}</div>
+      <div className="d-flex">
+        {multiCtx.loading ? (
+          <Spinner />
+        ) : (
+          <div className="my-auto orange">
+            {multiCtx.tasks.filter((x) => !x.done).length}{" "}
+          </div>
+        )}
+      </div>
       <div>
         {multiCtx.currentUser && (
           <Dropdown
             text={multiCtx.currentUser?.username}
             target="user"
-            icon="person-fill">
+            icon="fa7-solid:person">
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a
               className="dropdown-item text-center"
@@ -33,7 +61,7 @@ export default function Nav() {
             </a>
           </Dropdown>
         )}
-        <Dropdown target="themes" icon="paint-bucket">
+        <Dropdown target="themes" icon="gis:color">
           {themes.map((x) => (
             <Fragment key={uuidv4()}>
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}

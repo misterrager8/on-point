@@ -46,6 +46,7 @@ class Task(db.Model):
     description = db.Column(db.Text)
     tag = db.Column(db.Text)
     done = db.Column(db.Boolean, default=False)
+    pinned = db.Column(db.Boolean, default=False)
     date_added = db.Column(db.DateTime)
 
     def __init__(self, **kwargs):
@@ -53,7 +54,9 @@ class Task(db.Model):
 
     @classmethod
     def all(cls, id_: int):
-        return Task.query.filter(Task.user_id == id_).order_by(Task.done, desc(Task.id))
+        return Task.query.filter(Task.user_id == id_).order_by(
+            Task.done, desc(Task.pinned), desc(Task.id)
+        )
 
     @classmethod
     def get(cls, id_: int):
@@ -81,5 +84,6 @@ class Task(db.Model):
             "description": self.description,
             "tag": self.tag,
             "done": self.done,
-            "date_added": self.date_added.strftime("%y%m%d"),
+            "pinned": self.pinned,
+            "date_added": self.date_added.strftime("%-m/%-d"),
         }

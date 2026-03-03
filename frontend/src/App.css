@@ -121,7 +121,7 @@ body {
   margin-bottom: auto;
 }
 
-.task-item:hover {
+/* .task-item:hover {
   background-color: var(--btn-color);
   color: var(--btn-hover-txt);
   border-radius: 5px;
@@ -129,7 +129,7 @@ body {
 
 .task-item:hover .btn {
   color: var(--btn-hover-txt);
-}
+} */
 
 .task-label {
   margin-top: auto;
@@ -161,6 +161,31 @@ body {
   padding: 1px 10px;
 }
 
+.task-scroll {
+  height: 73vh;
+  overflow-y: auto;
+  border-bottom: 0.5px solid var(--secondary-color);
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  height: 2px;
+  width: 2px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--btn-color);
+}
+
+.orange {
+  color: var(--orange);
+}
+
+.blue {
+  color: var(--blue);
+}
+
 @media screen and (max-width: 1050px) {
   .inner {
     width: 95%;
@@ -168,5 +193,17 @@ body {
 
   .flex {
     flex-direction: column;
+  }
+
+  ::placeholder {
+    font-size: 1.3rem !important;
+  }
+
+  * {
+    font-size: 1rem !important;
+  }
+
+  .abbreviate {
+    display: none;
   }
 }
