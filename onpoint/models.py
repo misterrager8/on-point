@@ -55,7 +55,7 @@ class Task(db.Model):
     @classmethod
     def all(cls, id_: int):
         return Task.query.filter(Task.user_id == id_).order_by(
-            Task.done, desc(Task.pinned), desc(Task.id)
+            desc(Task.pinned), desc(Task.id)
         )
 
     @classmethod

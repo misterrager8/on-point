@@ -8,7 +8,7 @@ export default function Dropdown({
   size = "sm",
   border = false,
   children,
-  autoClose = true,
+  // autoClose = true,
   classNameBtn = "",
   classNameMenu = "",
   showCaret = true,
@@ -26,7 +26,7 @@ export default function Dropdown({
           (size ? ` btn-${size}` : "")
         }
         data-bs-target={"#" + target}
-        data-bs-auto-close={autoClose}
+        // data-bs-auto-close={autoClose}
         data-bs-toggle="dropdown">
         {icon && <Icon inline icon={icon} />}
         {text && (

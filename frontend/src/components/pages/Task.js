@@ -34,11 +34,9 @@ export default function Task() {
   }, [title, description, tag]);
 
   return (
-    <div>
-      <Button
-        icon="bi:chevron-left"
-        onClick={() => multiCtx.setCurrentTask(null)}
-      />
+    <div
+      className="my-2 py-4"
+      style={{ borderTop: ".5px solid", borderBottom: ".5px solid" }}>
       <div className="text-center">{multiCtx.currentTask?.date_added}</div>
       <div className="d-flex mt-3">
         <form

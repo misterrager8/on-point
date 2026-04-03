@@ -11,6 +11,7 @@ export default function Context({ children }) {
     JSON.parse(localStorage.getItem("onpoint-user")),
   );
   const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState(null);
   const [currentTask, setCurrentTask] = useState(null);
   // const [users, setUsers] = useState([]);
 
@@ -158,6 +159,9 @@ export default function Context({ children }) {
     setTasks: setTasks,
     recycleTask: recycleTask,
     togglePinned: togglePinned,
+
+    filter: filter,
+    setFilter: setFilter,
   };
 
   return (
