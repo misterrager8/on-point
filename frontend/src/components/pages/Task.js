@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Button from "../atoms/Button";
 import { MultiContext } from "../../Context";
 import Input from "../atoms/Input";
+import Dropdown from "../atoms/Dropdown";
 
 export default function Task() {
   const multiCtx = useContext(MultiContext);
@@ -53,12 +54,26 @@ export default function Task() {
             className="form-control mt-2"
             rows={5}
             placeholder="Description"></textarea>
-          <Input
-            className="mt-2"
-            placeholder="Tag"
-            value={tag}
-            onChange={onChangeTag}
-          />
+          <div className="d-flex mt-2">
+            <Dropdown
+              active={multiCtx.filter}
+              icon="bi:tag"
+              target="categories"
+              // text={multiCtx.filter ? multiCtx.filter : "Filter"}
+            >
+              {[...new Set(multiCtx.tasks.map((x) => x.tag))].map((y) => (
+                <a onClick={() => setTag(y)} className="dropdown-item">
+                  {y}
+                </a>
+              ))}
+            </Dropdown>
+            <Input
+              className=""
+              placeholder="Tag"
+              value={tag}
+              onChange={onChangeTag}
+            />
+          </div>
           {isChanged && (
             <Button
               text="Edit"
