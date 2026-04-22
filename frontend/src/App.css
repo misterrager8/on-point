@@ -121,7 +121,7 @@ body {
   margin-bottom: auto;
 }
 
-/* .task-item:hover {
+.task-item:hover {
   background-color: var(--btn-color);
   color: var(--btn-hover-txt);
   border-radius: 5px;
@@ -129,7 +129,7 @@ body {
 
 .task-item:hover .btn {
   color: var(--btn-hover-txt);
-} */
+}
 
 .task-label {
   margin-top: auto;
