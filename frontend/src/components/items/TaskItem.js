@@ -41,6 +41,11 @@ export default function TaskItem({ item }) {
             <span className="badge-custom my-auto mx-2">{item.tag}</span>
           )}
           <span className=" small my-auto mx-2">{item.date_added}</span>
+          {item.date_done && (
+            <div className="my-auto">
+              -<span className=" small mx-2">{item.date_done}</span>
+            </div>
+          )}
           {item.done ? (
             <Button
               icon="material-symbols:control-point-duplicate-rounded"

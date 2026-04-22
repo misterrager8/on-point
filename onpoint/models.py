@@ -1,3 +1,5 @@
+import datetime
+
 from flask_login import UserMixin
 from sqlalchemy import desc
 from . import db
@@ -48,6 +50,7 @@ class Task(db.Model):
     done = db.Column(db.Boolean, default=False)
     pinned = db.Column(db.Boolean, default=False)
     date_added = db.Column(db.DateTime)
+    date_done = db.Column(db.DateTime)
 
     def __init__(self, **kwargs):
         super(Task, self).__init__(**kwargs)
@@ -71,6 +74,8 @@ class Task(db.Model):
 
     def toggle(self):
         self.done = not self.done
+        self.date_done = datetime.datetime.now() if self.done else None
+
         db.session.commit()
 
     def delete(self):
@@ -86,4 +91,5 @@ class Task(db.Model):
             "done": self.done,
             "pinned": self.pinned,
             "date_added": self.date_added.strftime("%-m/%-d"),
+            "date_done": self.date_done.strftime("%-m/%-d") if self.date_done else None,
         }
