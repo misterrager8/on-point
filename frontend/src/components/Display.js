@@ -48,12 +48,6 @@ export default function Display() {
                     ))}
                   </Dropdown>
                   <Button
-                    active={show === "all"}
-                    onClick={() => setShow("all")}
-                    icon="boxicons:delta"
-                    text="All"
-                  />
-                  <Button
                     active={show === "undone"}
                     onClick={() => setShow("undone")}
                     icon="bi:square"
@@ -64,6 +58,12 @@ export default function Display() {
                     onClick={() => setShow("done")}
                     icon="bi:check-square"
                     text=""
+                  />
+                  <Button
+                    active={show === "all"}
+                    onClick={() => setShow("all")}
+                    icon="boxicons:delta"
+                    text="All"
                   />
                 </div>
                 <div className="task-scroll mt-3">
