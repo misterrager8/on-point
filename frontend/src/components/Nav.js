@@ -43,7 +43,7 @@ export default function Nav() {
           <Spinner />
         ) : (
           <div className="my-auto orange">
-            <Icon inline icon="bi:square" className="me-2" />
+            <Icon inline icon="bi:record" className="me-2" />
             {multiCtx.tasks.filter((x) => !x.done).length}{" "}
           </div>
         )}
@@ -53,7 +53,7 @@ export default function Nav() {
           <Dropdown
             text={multiCtx.currentUser?.username}
             target="user"
-            icon="fa7-solid:person">
+            icon="bi:person-circle">
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a
               className="dropdown-item text-center"

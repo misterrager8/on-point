@@ -148,12 +148,9 @@ body {
   letter-spacing: 1.5px;
 }
 
-.task-item.done {
-  opacity: 25%;
-}
-
-.task-item.done * {
+.task-item.done .task-label {
   text-decoration: line-through;
+  opacity: 25%;
 }
 
 .btn.red {
@@ -203,10 +200,6 @@ body {
 
   .flex {
     flex-direction: column;
-  }
-
-  ::placeholder {
-    /* font-size: 1.3rem !important; */
   }
 
   * {
