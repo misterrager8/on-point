@@ -169,7 +169,7 @@ body {
 }
 
 .task-scroll {
-  height: 73vh;
+  height: 64vh;
   overflow-y: auto;
   border-bottom: 0.5px solid var(--secondary-color);
 }
