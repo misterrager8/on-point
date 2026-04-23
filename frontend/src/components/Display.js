@@ -30,6 +30,11 @@ export default function Display() {
       label: "Tag",
       icon: "bi:tag",
     },
+    {
+      value: "title",
+      label: "Title",
+      icon: "bi:type",
+    },
   ];
 
   return (
@@ -124,6 +129,10 @@ export default function Display() {
                             return (
                               (ascending ? b : c).tag || ""
                             ).localeCompare((ascending ? c : b).tag || "");
+                          } else if (sort === "title") {
+                            return (
+                              (ascending ? b : c).title || ""
+                            ).localeCompare((ascending ? c : b).title || "");
                           }
                         })
                         .map((x) => (
@@ -145,6 +154,10 @@ export default function Display() {
                             return (
                               (ascending ? b : c).tag || ""
                             ).localeCompare((ascending ? c : b).tag || "");
+                          } else if (sort === "title") {
+                            return (
+                              (ascending ? b : c).title || ""
+                            ).localeCompare((ascending ? c : b).title || "");
                           }
                         })
                         .map((x) => (
