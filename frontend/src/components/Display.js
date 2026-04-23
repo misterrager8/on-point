@@ -9,15 +9,13 @@ import Dropdown from "./atoms/Dropdown";
 
 export default function Display() {
   const multiCtx = useContext(MultiContext);
-  const [showDone, setShowDone] = useState(
-    localStorage.getItem("onpoint-filter-done"),
+  const [show, setShow] = useState(
+    localStorage.getItem("onpoint-filter-done") || "all",
   );
 
   useEffect(() => {
-    showDone
-      ? localStorage.setItem("onpoint-filter-done", showDone)
-      : localStorage.removeItem("onpoint-filter-done");
-  }, [showDone]);
+    localStorage.setItem("onpoint-filter-done", show);
+  }, [show]);
 
   return (
     <div className="body">
@@ -29,7 +27,6 @@ export default function Display() {
           ) : (
             <div>
               <div>
-                <AddTask />
                 <div className="mt-3">
                   {multiCtx.filter && (
                     <Button
@@ -50,24 +47,40 @@ export default function Display() {
                       </a>
                     ))}
                   </Dropdown>
+                  <Button
+                    active={show === "all"}
+                    onClick={() => setShow("all")}
+                    icon="boxicons:delta"
+                    text="All"
+                  />
+                  <Button
+                    active={show === "undone"}
+                    onClick={() => setShow("undone")}
+                    icon="bi:square"
+                    text=""
+                  />
+                  <Button
+                    active={show === "done"}
+                    onClick={() => setShow("done")}
+                    icon="bi:check-square"
+                    text=""
+                  />
                 </div>
                 <div className="task-scroll mt-3">
-                  {multiCtx.tasks
-                    .filter((w) => !w.done)
-                    .filter((g) =>
-                      multiCtx.filter ? g.tag === multiCtx.filter : g,
-                    )
-                    .map((x) => (
-                      <TaskItem key={x.id} item={x} />
-                    ))}
+                  {["all", "undone"].includes(show) && (
+                    <>
+                      {multiCtx.tasks
+                        .filter((w) => !w.done)
+                        .filter((g) =>
+                          multiCtx.filter ? g.tag === multiCtx.filter : g,
+                        )
+                        .map((x) => (
+                          <TaskItem key={x.id} item={x} />
+                        ))}
+                    </>
+                  )}
 
-                  <Button
-                    className="my-3"
-                    text={(showDone ? "Hide" : "Show") + " Done"}
-                    onClick={() => setShowDone(!showDone)}
-                    icon={"bi:eye" + (showDone ? "-slash" : "")}
-                  />
-                  {showDone && (
+                  {["all", "done"].includes(show) && (
                     <>
                       {multiCtx.tasks
                         .filter((w) => w.done)
@@ -77,6 +90,26 @@ export default function Display() {
                         ))}
                     </>
                   )}
+
+                  {/* <Button
+                    className="my-3"
+                    text={(done ? "Hide" : "Show") + " Done"}
+                    onClick={() => setShow(!done)}
+                    icon={"bi:eye" + (done ? "-slash" : "")}
+                  />
+                  {done && (
+                    <>
+                      {multiCtx.tasks
+                        .filter((w) => w.done)
+                        .sort((x, y) => y.id - x.id)
+                        .map((x) => (
+                          <TaskItem key={x.id} item={x} />
+                        ))}
+                    </>
+                  )} */}
+                </div>
+                <div className=" p-2">
+                  <AddTask />
                 </div>
               </div>
             </div>

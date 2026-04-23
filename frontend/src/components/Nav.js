@@ -3,6 +3,7 @@ import Dropdown from "./atoms/Dropdown";
 import { MultiContext } from "../Context";
 import { v4 as uuidv4 } from "uuid";
 import Spinner from "./atoms/Spinner";
+import { Icon } from "@iconify/react";
 
 export default function Nav() {
   const multiCtx = useContext(MultiContext);
@@ -42,6 +43,7 @@ export default function Nav() {
           <Spinner />
         ) : (
           <div className="my-auto orange">
+            <Icon inline icon="bi:square" className="me-2" />
             {multiCtx.tasks.filter((x) => !x.done).length}{" "}
           </div>
         )}

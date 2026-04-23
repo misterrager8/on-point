@@ -14,7 +14,13 @@ export default function AddTask() {
         multiCtx.addTask(e, title);
         setTitle("");
       }}>
-      <Input placeholder="New Task" value={title} onChange={onChangeTitle} />
+      <Input
+        // label="New Task"
+        icon="bi:plus-circle"
+        placeholder="New Task"
+        value={title}
+        onChange={onChangeTitle}
+      />
     </form>
   );
 }

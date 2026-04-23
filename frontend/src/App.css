@@ -82,17 +82,27 @@ body {
 
 .form-control,
 .form-control:focus {
-  background-color: var(--secondary-color);
+  background-color: transparent;
   border: none;
   color: var(--primary-txt);
   font-size: 0.875rem;
+}
+
+.input-group-custom {
+  background-color: var(--secondary-color);
+  border-radius: 7px;
+}
+
+.input-label {
+  letter-spacing: 1.5px;
+  opacity: 50%;
 }
 
 ::placeholder {
   color: var(--primary-txt) !important;
   opacity: 50% !important;
   letter-spacing: 2px !important;
-  font-size: 0.875rem !important;
+  /* font-size: 0.875rem !important; */
 }
 
 .between {
@@ -196,7 +206,7 @@ body {
   }
 
   ::placeholder {
-    font-size: 1.3rem !important;
+    /* font-size: 1.3rem !important; */
   }
 
   * {
