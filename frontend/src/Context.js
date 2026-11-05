@@ -11,6 +11,7 @@ export default function Context({ children }) {
     JSON.parse(localStorage.getItem("onpoint-user")),
   );
   const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState(null);
   const [currentTask, setCurrentTask] = useState(null);
   // const [users, setUsers] = useState([]);
 
@@ -108,6 +109,15 @@ export default function Context({ children }) {
     );
   };
 
+  const quickEdit = (e, id, title) => {
+    e.preventDefault();
+    setLoading(true);
+    api("quick_edit", { id: id, title: title }, (data) => {
+      setTasks(data.tasks);
+      setLoading(false);
+    });
+  };
+
   const deleteTask = (id) => {
     setLoading(true);
     api("delete_task", { id: id }, (data) => {
@@ -154,10 +164,14 @@ export default function Context({ children }) {
     addTask: addTask,
     deleteTask: deleteTask,
     editTask: editTask,
+    quickEdit: quickEdit,
     toggleTask: toggleTask,
     setTasks: setTasks,
     recycleTask: recycleTask,
     togglePinned: togglePinned,
+
+    filter: filter,
+    setFilter: setFilter,
   };
 
   return (

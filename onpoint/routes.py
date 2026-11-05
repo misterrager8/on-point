@@ -156,6 +156,27 @@ def edit_task():
     return {"success": success, "msg": msg, "tasks": tasks_}
 
 
+@current_app.post("/quick_edit")
+def quick_edit():
+    success = True
+    msg = ""
+    task_ = None
+    tasks_ = []
+
+    try:
+        task_ = Task.get(int(request.json.get("id")))
+        task_.title = request.json.get("title")
+
+        task_.edit()
+
+        tasks_ = [i.to_dict() for i in Task.all(current_user.id)]
+    except Exception as e:
+        success = False
+        msg = str(e)
+
+    return {"success": success, "msg": msg, "tasks": tasks_}
+
+
 @current_app.post("/toggle_task")
 def toggle_task():
     success = True

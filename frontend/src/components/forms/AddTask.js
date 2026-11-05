@@ -14,7 +14,13 @@ export default function AddTask() {
         multiCtx.addTask(e, title);
         setTitle("");
       }}>
-      <Input placeholder="New Task" value={title} onChange={onChangeTitle} />
+      <input
+        onFocus={(e) => e.target.select()}
+        className="new-task title-input"
+        placeholder="+ New"
+        value={title}
+        onChange={onChangeTitle}
+      />
     </form>
   );
 }

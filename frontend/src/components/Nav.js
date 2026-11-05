@@ -1,9 +1,9 @@
 import { Fragment, useContext, useEffect, useState } from "react";
-import Button from "./atoms/Button";
 import Dropdown from "./atoms/Dropdown";
 import { MultiContext } from "../Context";
 import { v4 as uuidv4 } from "uuid";
 import Spinner from "./atoms/Spinner";
+import { Icon } from "@iconify/react";
 
 export default function Nav() {
   const multiCtx = useContext(MultiContext);
@@ -43,6 +43,7 @@ export default function Nav() {
           <Spinner />
         ) : (
           <div className="my-auto orange">
+            <Icon inline icon="bi:record" className="me-2" />
             {multiCtx.tasks.filter((x) => !x.done).length}{" "}
           </div>
         )}
@@ -52,7 +53,7 @@ export default function Nav() {
           <Dropdown
             text={multiCtx.currentUser?.username}
             target="user"
-            icon="fa7-solid:person">
+            icon="bi:person-circle">
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a
               className="dropdown-item text-center"

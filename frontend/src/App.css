@@ -2,6 +2,7 @@
 
 * {
   font-family: "Roboto";
+  font-size: 1.2rem;
 }
 
 body {
@@ -32,7 +33,7 @@ body {
 }
 
 .inner {
-  height: 100%;
+  height: 95%;
   width: 75%;
   margin: auto;
   /* border: 0.5px solid; */
@@ -82,17 +83,27 @@ body {
 
 .form-control,
 .form-control:focus {
-  background-color: var(--secondary-color);
+  background-color: transparent;
   border: none;
   color: var(--primary-txt);
   font-size: 0.875rem;
+}
+
+.input-group-custom {
+  background-color: var(--secondary-color);
+  border-radius: 7px;
+}
+
+.input-label {
+  letter-spacing: 1.5px;
+  opacity: 50%;
 }
 
 ::placeholder {
   color: var(--primary-txt) !important;
   opacity: 50% !important;
   letter-spacing: 2px !important;
-  font-size: 0.875rem !important;
+  /* font-size: 0.875rem !important; */
 }
 
 .between {
@@ -121,7 +132,7 @@ body {
   margin-bottom: auto;
 }
 
-/* .task-item:hover {
+.task-item:hover {
   background-color: var(--btn-color);
   color: var(--btn-hover-txt);
   border-radius: 5px;
@@ -129,7 +140,7 @@ body {
 
 .task-item:hover .btn {
   color: var(--btn-hover-txt);
-} */
+}
 
 .task-label {
   margin-top: auto;
@@ -138,16 +149,23 @@ body {
   letter-spacing: 1.5px;
 }
 
-.task-item.done {
+.task-item.done .task-label {
+  text-decoration: line-through;
   opacity: 25%;
 }
 
-.task-item.done * {
-  text-decoration: line-through;
+.btn.red {
+  color: var(--red);
 }
 
-.btn.red {
-  color: #be2b2b;
+.btn.red.active,
+.btn.red:hover {
+  color: #cccccc;
+  background-color: var(--red);
+}
+
+.red {
+  color: var(--red);
 }
 
 .btn.green {
@@ -162,7 +180,7 @@ body {
 }
 
 .task-scroll {
-  height: 73vh;
+  height: 64vh;
   overflow-y: auto;
   border-bottom: 0.5px solid var(--secondary-color);
 }
@@ -186,6 +204,35 @@ body {
   color: var(--blue);
 }
 
+.title-input {
+  outline: none;
+  color: var(--primary-txt);
+}
+
+.side-panel {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.new-task {
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+  border-top: 0.5px solid;
+  padding: 8px 0px;
+  outline: 0;
+}
+
+.note-box {
+  background-color: transparent;
+  color: var(--primary-txt);
+  resize: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
 @media screen and (max-width: 1050px) {
   .inner {
     width: 95%;
@@ -193,14 +240,6 @@ body {
 
   .flex {
     flex-direction: column;
-  }
-
-  ::placeholder {
-    font-size: 1.3rem !important;
-  }
-
-  * {
-    font-size: 1rem !important;
   }
 
   .abbreviate {
